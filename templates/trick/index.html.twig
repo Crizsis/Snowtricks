@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="all_tricks" style="text-align:center;">
+      {% for trick in tricks %}
+      <div class="col-lg-3 mt-4" style="display:inline-block;">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title" style="text-align: left;">
+              <a href="{{ path('trick_show', {id: trick.id, name: trick.name}) }}">{{ trick.name }}</a>
+            {% if app.user %}
+            <div class="edit_&_delete" style="float: right;">
+              <a href="{{ path('trick_edit', {'id': trick.id}) }}">
+                <img src="img/edit.png" alt="EditPencil" class="text-right" />
+              </a>
+              <form method="POST" action="{{ path('trick_delete', {'id': trick.id}) }}" style="display: inline-block;">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ trick.id )}}">
+                <input type="image" src="img/delete.png" alt="Submit">
+              </form>
+            </div>
+            {% endif %}
+            </h5>
+            <p class="card-text" style="text-align: left;">{{ trick.description }}</p>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+{% endblock %}

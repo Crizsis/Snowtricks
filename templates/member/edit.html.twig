@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editer un trick{% endblock %}
+{% block cover %}{% endblock %}
+{% block body %}
+
+<div class="container">
+ <div class="m-4 row">
+   <div class="col-sm-8">
+     <h1>Editer un trick</h1>
+   </div>
+   <div class="col">
+     {{ include('member/_delete_form.html.twig') }}
+   </div>
+  </div>
+  {{ include('trick/_form.html.twig') }}
+</div>
+
+{% endblock %}
